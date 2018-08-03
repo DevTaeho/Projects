@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".iconactivity.details.AttractionGroup"
+    android:orientation="vertical"
+    android:background="#f9fff9">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/toolbarGroup"
+        android:background="#f9fff9"
+        android:gravity="center"
+        style="@style/ToolBarStyle"
+        android:elevation="0.5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/toolbar_title_groupActivity"
+            android:gravity="center_vertical"
+            android:textColor="@color/md_black_1000"
+            android:textSize="15dp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/attractionImage_group"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_toEndOf="@+id/toolbarGroup"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/groupactivity_layout_border">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_grouphost"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"/>
+
+        <TextView
+            android:id="@+id/group_host"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@color/md_black_1000"
+            android:text="주최자   : "
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/group_host_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_black_1000"
+            android:textSize="15dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:background="@drawable/groupactivity_layout_border">
+
+        <ImageView
+            android:id="@+id/ic_date_image"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_date" />
+
+        <TextView
+            android:id="@+id/datedemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/ic_date_image"
+            android:text="날    짜   : "
+            android:textColor="@color/md_black_1000"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/group_travel_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/datedemon"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/md_black_1000"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:id="@+id/ic_date"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_datemore" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:background="@drawable/groupactivity_layout_border">
+
+        <ImageView
+            android:id="@+id/ic_duration_iamge"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_duration" />
+
+        <TextView
+            android:id="@+id/gigan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="false"
+            android:layout_toRightOf="@+id/ic_duration_iamge"
+            android:text="기    간   : "
+            android:textColor="@color/md_black_1000"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/group_travel_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="false"
+            android:layout_toRightOf="@id/gigan"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/md_black_1000"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:id="@+id/ic_duration"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_datemore" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:background="@drawable/groupactivity_layout_border">
+
+        <ImageView
+            android:id="@+id/ic_alertdate_image"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_alertdate" />
+
+        <TextView
+            android:id="@+id/magam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="false"
+            android:layout_toRightOf="@+id/ic_alertdate_image"
+            android:text="마    감   : "
+            android:textColor="@color/md_black_1000"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/group_travel_dateofend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="false"
+            android:layout_toRightOf="@id/magam"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/md_black_1000"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/ic_alertdate"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_datemore" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_invitetogroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/groupactivity_layout_custom_button"
+        android:text="초대하기"/>
+
+</LinearLayout>

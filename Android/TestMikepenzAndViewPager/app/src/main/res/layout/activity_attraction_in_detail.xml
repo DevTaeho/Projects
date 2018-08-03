@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f9fff9"
+    tools:context=".iconactivity.details.AttractionInDetail">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarDetail"
+        style="@style/ToolBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#f9fff9"
+        android:elevation="0.5dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/toolbar_title_detailActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/md_black_1000"
+            android:textSize="15dp" />
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/attraction_detail_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="24dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <TextView
+        android:id="@+id/attraction_detail_viewpager_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="보신각은 중화요리 전문점 이름으로 많이 사용됩니다."  />
+
+</LinearLayout>
