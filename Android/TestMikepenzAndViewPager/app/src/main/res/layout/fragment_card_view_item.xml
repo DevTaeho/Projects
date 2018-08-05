@@ -27,6 +27,12 @@
                 android:textSize="15dp"
                 android:textColor="@color/md_black_1000"/>
 
+            <TextView
+                android:id="@+id/card_view_contentid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
+
 
         </RelativeLayout>
 

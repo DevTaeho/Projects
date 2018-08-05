@@ -14,14 +14,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dhfls.testmikepenzandviewpager.R;
 
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,7 +41,10 @@ public class AttractionInDetail extends AppCompatActivity {
     Toolbar toolbar;
     TextView toolbarTitleTextView;
     String toolbarTitle;
+    String contentId;
     Intent getToolbarTitleIntent;
+
+    String[] image_list = new String[20];
 
     private String[] images = {
             "https://www.gstatic.com/webp/gallery3/1.sm.png",
@@ -57,11 +64,19 @@ public class AttractionInDetail extends AppCompatActivity {
         // Toolbar setting.
         getToolbarTitleIntent = getIntent();
         toolbarTitle = getToolbarTitleIntent.getExtras().getString("toolbarTitle");
+        contentId = getToolbarTitleIntent.getExtras().getString("contentId");
         toolbarTitleTextView.setText(toolbarTitle);
 
+        getDetailAsyncTask getDetailAsyncTask = new getDetailAsyncTask();
+        try{
+            image_list = getDetailAsyncTask.execute().get();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
         viewPager = (ViewPager) findViewById(R.id.attraction_detail_viewpager);
-        viewPager.setOffscreenPageLimit(3);
-        adapter = new AttractionDetailViewPagerAdapter(this, images);
+        adapter = new AttractionDetailViewPagerAdapter(this, image_list);
         viewPager.setAdapter(adapter);
     }
 
@@ -69,7 +84,9 @@ public class AttractionInDetail extends AppCompatActivity {
 
         @Override
         protected String[] doInBackground(String... strings) {
-            return new String[0];
+            String[] imageList;
+            imageList = APIParser_Array();
+            return imageList;
         }
     }
 
@@ -79,8 +96,6 @@ public class AttractionInDetail extends AppCompatActivity {
     String jsonResult = null;
 
 
-    String image_list[] = new String[10];
-
     /*String addr_list[] = new String[10];
     String detail_list[] = new String[10];
     String homepage[] = new String[10];
@@ -88,9 +103,9 @@ public class AttractionInDetail extends AppCompatActivity {
     String title[] = new String[10];*/
 
 
-    public void getJSON() {
+    public String getJSON(String res) {
         try {
-            URL url = new URL(getURLParam());
+            URL url = new URL(res);
             InputStream is = url.openStream();
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
@@ -110,17 +125,21 @@ public class AttractionInDetail extends AppCompatActivity {
             reader.close();
 
             jsonResult = buffer.toString();
+            return jsonResult;
 
         } catch (IOException e) {
                 e.printStackTrace();
+                return null;
         }
     }
 
-    /*public void APIParser_Array(){
+
+    public String[] APIParser_Array(){
 
         try {
+
             JSONParser jsonParser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonResult);
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(getJSON(getURLParam2()));
             JSONObject response = (JSONObject) jsonObject.get("response");
             JSONObject body = (JSONObject) response.get("body");
             JSONObject items = (JSONObject) body.get("items");
@@ -131,24 +150,28 @@ public class AttractionInDetail extends AppCompatActivity {
             for(int i=0;i<item.size();i++) {
                 //이미지 리스트 파싱
                 JSONObject list = (JSONObject) item.get(i);
-                String photo = (String) list.get("originimgurl");
+                String photo = list.get("originimgurl").toString();
                 image_list[i]=photo;
+                Log.d("imageUrl", image_list[i]);
             }
-        } catch (ParseException e) {
+
+            return image_list;
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+
+            return null;
         }
 
-    }*/
+    }
 
 
     public void APIParser() {
 
         //세부내용 파싱
         try {
-
             JSONParser jsonParser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonResult);
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(getURLParam());
             JSONObject response = (JSONObject) jsonObject.get("response");
             JSONObject body = (JSONObject) response.get("body");
             JSONObject items = (JSONObject) body.get("items");
@@ -172,7 +195,15 @@ public class AttractionInDetail extends AppCompatActivity {
     private String getURLParam() {
 
         String apiUrl = TOUR_URL + "/detailCommon?ServiceKey=" + KEY +
-                "&contentId=" + contentId_list + "&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&overviewYN=Y" +
+                "&contentId=" + contentId + "&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&overviewYN=Y" +
+                "&MobileOS=AND&MobileApp=appName&_type=json";
+        return apiUrl;
+    }
+
+    private String getURLParam2() {
+
+        String apiUrl = TOUR_URL + "/detailImage?ServiceKey=" + KEY +
+                "&contentId=" + contentId + "&imageYN=Y" +
                 "&MobileOS=AND&MobileApp=appName&_type=json";
         return apiUrl;
     }

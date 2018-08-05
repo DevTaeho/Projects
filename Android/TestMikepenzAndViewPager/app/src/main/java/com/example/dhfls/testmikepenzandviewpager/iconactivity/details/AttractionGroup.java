@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.dhfls.testmikepenzandviewpager.DatePickerFragment;
 import com.example.dhfls.testmikepenzandviewpager.NumberPickerDialog;
 import com.example.dhfls.testmikepenzandviewpager.R;
+import com.example.dhfls.testmikepenzandviewpager.loginandsession.SessionControl;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,7 @@ public class AttractionGroup extends AppCompatActivity implements NumberPicker.O
     ImageView searchDueDateImageView;
     ImageView durationImageView;
     TextView durationTextView;
+    TextView groupHostTextView;
     Button inviteButton;
 
 
@@ -52,6 +54,7 @@ public class AttractionGroup extends AppCompatActivity implements NumberPicker.O
         durationImageView = (ImageView) findViewById(R.id.ic_duration);
         durationTextView = (TextView) findViewById(R.id.group_travel_duration);
         inviteButton = (Button) findViewById(R.id.button_invitetogroup);
+        groupHostTextView = (TextView)findViewById(R.id.group_host_name);
 
 
         // Toolbar setting.
@@ -67,6 +70,7 @@ public class AttractionGroup extends AppCompatActivity implements NumberPicker.O
                 .load(imageUrl)
                 .into(attractionImageVIew);
 
+        groupHostTextView.setText(SessionControl.getUserName(this));
 
         // Click Event Gathering.
         searchDateImageView.setOnClickListener(new View.OnClickListener() {

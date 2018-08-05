@@ -8,9 +8,13 @@ public class AttractionRecyclerViewItem {
     // Save image of the attraction
     private String attractionImageUrl;
 
-    public AttractionRecyclerViewItem(String attractionName, String attractionImageUrl){
+    private Long contentID;
+
+
+    public AttractionRecyclerViewItem(String attractionName, String attractionImageUrl, Long contentID){
         this.attractionName = attractionName;
         this.attractionImageUrl = attractionImageUrl;
+        this.contentID = contentID;
     }
 
     public String getAttractionName(){
@@ -27,5 +31,13 @@ public class AttractionRecyclerViewItem {
 
     public void setAttractionImageUrl(String  attractionImageUrl) {
         this.attractionImageUrl = attractionImageUrl;
+    }
+
+    public Long getContentID() {
+        return contentID;
+    }
+
+    public void setContentID(Long contentID) {
+        this.contentID = contentID;
     }
 }

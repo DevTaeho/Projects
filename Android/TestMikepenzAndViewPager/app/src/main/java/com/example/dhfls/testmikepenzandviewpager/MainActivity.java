@@ -27,6 +27,16 @@ import com.example.dhfls.testmikepenzandviewpager.fragment.ThirdFragment;
 import com.example.dhfls.testmikepenzandviewpager.fragment.FourthFragment;
 import com.example.dhfls.testmikepenzandviewpager.loginandsession.LoginActivity;
 import com.example.dhfls.testmikepenzandviewpager.loginandsession.SessionControl;
+import com.kakao.kakaolink.v2.KakaoLinkResponse;
+import com.kakao.kakaolink.v2.KakaoLinkService;
+import com.kakao.message.template.ButtonObject;
+import com.kakao.message.template.ContentObject;
+import com.kakao.message.template.FeedTemplate;
+import com.kakao.message.template.LinkObject;
+import com.kakao.message.template.SocialObject;
+import com.kakao.network.ErrorResult;
+import com.kakao.network.callback.ResponseCallback;
+import com.kakao.util.helper.log.Logger;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -143,7 +153,9 @@ public class MainActivity extends AppCompatActivity{
                                 startActivity(intent);
                                 finish();
                                 break;
-                            case 3: break;
+                            case 3:
+                                onlinkButtonClicked();
+                                break;
                             case 4: break;
                             case 5: break;
                             case 6: break;
@@ -239,4 +251,28 @@ public class MainActivity extends AppCompatActivity{
 
             return item;
         }
+    private void onlinkButtonClicked(){
+        FeedTemplate params = FeedTemplate
+                .newBuilder(ContentObject.newBuilder("Feelture",
+                        "http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg",
+                        LinkObject.newBuilder().setMobileWebUrl("https://developers.kakao.com").build()).build())
+                .addButton(new ButtonObject("앱에서 보기", LinkObject.newBuilder()
+                        .setAndroidExecutionParams("key1=value1")
+                        .setIosExecutionParams("key1=value1")
+                        .build()))
+                .build();
+// 현재 에러가 뜨는데 이유로 추정되는것 and 답변 https://devtalk.kakao.com/t/v2/53050에 있음
+
+        KakaoLinkService.getInstance().sendDefault(this, params, new ResponseCallback<KakaoLinkResponse>() {
+            @Override
+            public void onFailure(ErrorResult errorResult) {
+                Logger.e(errorResult.toString());
+            }
+
+            @Override
+            public void onSuccess(KakaoLinkResponse result) {
+
+            }
+        });
+    }
 }

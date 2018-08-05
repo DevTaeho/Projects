@@ -1,6 +1,7 @@
 package com.example.dhfls.testmikepenzandviewpager.cardview.AttractionRecyclerView;
 
 import android.content.Intent;
+
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +16,11 @@ import com.example.dhfls.testmikepenzandviewpager.R;
 import com.example.dhfls.testmikepenzandviewpager.iconactivity.details.AttractionGroup;
 import com.example.dhfls.testmikepenzandviewpager.iconactivity.details.AttractionInDetail;
 import com.example.dhfls.testmikepenzandviewpager.iconactivity.details.AttractionLocation;
+import com.kakao.kakaonavi.KakaoNaviParams;
+import com.kakao.kakaonavi.KakaoNaviService;
+import com.kakao.kakaonavi.Location;
+import com.kakao.kakaonavi.NaviOptions;
+import com.kakao.kakaonavi.options.CoordType;
 
 import java.util.List;
 
@@ -44,6 +50,7 @@ public class AttractionRecyclerViewDataAdapter extends RecyclerView.Adapter<Attr
 
         // Get attraction title text and image view object.
         final TextView attractionTitleView = (TextView) attractionItemView.findViewById(R.id.card_view_image_title);
+        final TextView attractionContentIdView = (TextView) attractionItemView.findViewById(R.id.card_view_contentid);
 
         // Get attraction image view object
         final ImageView attractionImageView = (ImageView) attractionItemView.findViewById(R.id.card_view_image);
@@ -76,10 +83,12 @@ public class AttractionRecyclerViewDataAdapter extends RecyclerView.Adapter<Attr
             public void onClick(View view) {
                 // Get attraction title for throwing title to icon activity.
                 String attractionTitle = attractionTitleView.getText().toString();
+                String attractionContentId = attractionContentIdView.getText().toString();
 
                 Intent intent = new Intent(view.getContext(), AttractionInDetail.class);
 
                 intent.putExtra("toolbarTitle", attractionTitle);
+                intent.putExtra("contentId", attractionContentId);
                 view.getContext().startActivity(intent);
             }
         });
@@ -107,6 +116,14 @@ public class AttractionRecyclerViewDataAdapter extends RecyclerView.Adapter<Attr
         cardVIewLocationIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                locationInfo loinfo = new locationInfo();
+                Location destination = Location.newBuilder(loinfo.dbN,loinfo.dbX,loinfo.dbY).build();
+                KakaoNaviParams params = KakaoNaviParams.newBuilder(destination)
+                        .setNaviOptions(new NaviOptions.Builder().setCoordType(CoordType.WGS84).build()).build();
+                KakaoNaviService.getInstance().navigate(view.getContext(),params);
+                //카카오developer에서 프로젝트 등록(키해시,패키지 설정)
+                //아래 부분은 필요없을듯..
+
                 // Get attraction title for throwing title to icon activity.
                 String attractionTitle = attractionTitleView.getText().toString();
                 Intent intent = new Intent(view.getContext(), AttractionLocation.class);
@@ -136,6 +153,7 @@ public class AttractionRecyclerViewDataAdapter extends RecyclerView.Adapter<Attr
                     .with(holder.getAttractionImageView().getContext())
                     .load(attractionItem.getAttractionImageUrl())
                     .into(holder.getAttractionImageView());
+            holder.getAttractionContentIdView().setText(attractionItem.getContentID().toString());
         }
     }
 
@@ -151,5 +169,11 @@ public class AttractionRecyclerViewDataAdapter extends RecyclerView.Adapter<Attr
     @Override
     public int getItemViewType(int position) {
         return position;
+    }
+
+    public class locationInfo{
+        String dbN = "주소";
+        double dbX = 127.10821222694533;
+        double dbY = 37.20205604363057;
     }
 }

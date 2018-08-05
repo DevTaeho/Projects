@@ -152,7 +152,7 @@ public class FirstFragment extends Fragment {
 
                     for(int i = imagePerPage; i < imagePerPage + IMAGE_PER_PAGE; i++){
                         if(imagePerPage == imageUrl.length) break;
-                        attractionItemList.add(new AttractionRecyclerViewItem(title_list[i], imageUrl[i]));
+                        attractionItemList.add(new AttractionRecyclerViewItem(title_list[i], imageUrl[i], contentID_list[i]));
                     }
                     attractionRecyclerViewDataAdapter.notifyDataSetChanged();
                     imagePerPage += IMAGE_PER_PAGE;
@@ -161,6 +161,7 @@ public class FirstFragment extends Fragment {
         });
     }
     public String title_list[] = new String[100];
+    public Long contentID_list[] = new Long[100];
     public class InitializeAsyncTask extends AsyncTask<String, Void, String[]>{
 
         String jsonResult = null;
@@ -171,8 +172,6 @@ public class FirstFragment extends Fragment {
         public int scrollCount=1;
         public int loadCount = 4;
 
-
-        public Long contentId_list[] = new Long[200];
 
         @Override
         protected String[] doInBackground(String... urls) {
@@ -219,9 +218,8 @@ public class FirstFragment extends Fragment {
                     String photo = (String) list.get("firstimage");
                     String title = (String) list.get("title");
                     Long contentID = (Long) list.get("contentid");
-                    contentId_list[i]=contentID;
 
-
+                    contentID_list[i]=contentID;
                     title_list[i]= title;
                     image_list[i] = photo;
 
@@ -259,7 +257,7 @@ public class FirstFragment extends Fragment {
         }
         // 첫 이미지 4개 등록
         for(int i = 0; i < FIRST_FOUR_IMAGE; i++){
-            attractionItemList.add(new AttractionRecyclerViewItem(title_list[i], imageUrl[i]));
+            attractionItemList.add(new AttractionRecyclerViewItem(title_list[i], imageUrl[i], contentID_list[i]));
             imagePerPage = FIRST_FOUR_IMAGE;
         }
     }
