@@ -46,11 +46,6 @@ public class AttractionInDetail extends AppCompatActivity {
 
     String[] image_list = new String[20];
 
-    private String[] images = {
-            "https://www.gstatic.com/webp/gallery3/1.sm.png",
-            "https://www.gstatic.com/webp/gallery/4.sm.jpg",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMtiv_1sQ1kIpuQrMvFLN5Tk12qM1OzOeK_GgeK5yICVvp-sF-jQ"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +56,12 @@ public class AttractionInDetail extends AppCompatActivity {
         toolbar = (Toolbar)findViewById(R.id.toolbarDetail);
         toolbarTitleTextView = (TextView) findViewById(R.id.toolbar_title_detailActivity);
 
-        // Toolbar setting.
+        // Intent for getting data from another activities.
         getToolbarTitleIntent = getIntent();
+
+        // Get Attraction name for the toolbar title.
         toolbarTitle = getToolbarTitleIntent.getExtras().getString("toolbarTitle");
+        // Get content ID for parsing Image url.
         contentId = getToolbarTitleIntent.getExtras().getString("contentId");
         toolbarTitleTextView.setText(toolbarTitle);
 
@@ -74,7 +72,7 @@ public class AttractionInDetail extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
+        // Find ViewPager and set adapter with AttractionDetailViewPagerAdapter.
         viewPager = (ViewPager) findViewById(R.id.attraction_detail_viewpager);
         adapter = new AttractionDetailViewPagerAdapter(this, image_list);
         viewPager.setAdapter(adapter);

@@ -160,8 +160,8 @@ public class FirstFragment extends Fragment {
             }
         });
     }
-    public String title_list[] = new String[100];
-    public Long contentID_list[] = new Long[100];
+    private String title_list[] = new String[100];
+    private Long contentID_list[] = new Long[100];
     public class InitializeAsyncTask extends AsyncTask<String, Void, String[]>{
 
         String jsonResult = null;

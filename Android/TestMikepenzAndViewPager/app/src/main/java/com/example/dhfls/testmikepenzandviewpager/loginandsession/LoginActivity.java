@@ -114,11 +114,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     void login(){
-//        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//        startActivity(intent);
-//        finish();
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
 
-
+        /*
         try{
             String userID = inputID.getText().toString().trim();
             String userPW = inputPW.getText().toString().trim();
@@ -173,6 +173,6 @@ public class LoginActivity extends AppCompatActivity {
         {
             dialog.dismiss();
             System.out.println("Exception : " + e.getMessage());
-        }
+        }*/
     }
 }

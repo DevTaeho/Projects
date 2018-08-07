@@ -8,11 +8,13 @@
     style="@style/MyFragmentStyle">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:foregroundGravity="center"
-        android:id="@+id/firstFragImage"
-        android:src="@drawable/justlikeme"/>
+    <!-- A Recycler View that contains a Card View -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/restaurant_fragment_card_view_recycler_list"
+        android:scrollbars="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#f9fff9">
+    </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>

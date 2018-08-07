@@ -19,8 +19,6 @@ public class HotelRecyclerViewDataAdapter extends RecyclerView.Adapter<HotelRecy
 
     static final int NUM_HOTEL_IMAGES = 150;
 
-    String[] imageArray = new String[NUM_HOTEL_IMAGES];
-    String imageUrl;
 
     public HotelRecyclerViewDataAdapter(List<HotelRecyclerViewItem> hotelItemList) {
         this.hotelItemList = hotelItemList;
