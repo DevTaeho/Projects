@@ -8,4 +8,6 @@
    Rest API로 이미지를 가져오고
    가져온 Image Url을 Shared Preference에 저장하는 형태를 고안
    
-   Shared Preference에 저장된 URL을 통해 이미지를 View에 넣어주는 방식
+   Shared Preference에 저장된 URL을 통해 이미지를 View에 넣어주는 방식을 생각중
+   
+2. 서버를 어떻게 할 것인가?
