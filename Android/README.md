@@ -4,6 +4,6 @@
 
 (작성중)
 
-Team mate : Dong Wook Lee, Tae ho Kim, Hye Jeong Moon
+Members : Dong Wook Lee, Tae ho Kim, Hye Jeong Moon
 
 Write on : 2018-08-07
