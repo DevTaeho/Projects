@@ -37,7 +37,7 @@ import java.util.List;
 
 public class AttractionInDetail extends AppCompatActivity {
 
-    ViewPager viewPager;
+    ViewPagerFixed viewPager;
     AttractionDetailViewPagerAdapter adapter;
 
     Toolbar toolbar;
@@ -89,7 +89,7 @@ public class AttractionInDetail extends AppCompatActivity {
         dynamicImageList = makeDynamicImageUrl(imageUrlList);
 
         // Find ViewPager and set adapter with AttractionDetailViewPagerAdapter.
-        viewPager = (ViewPager) findViewById(R.id.attraction_detail_viewpager);
+        viewPager = (ViewPagerFixed) findViewById(R.id.attraction_detail_viewpager);
         adapter = new AttractionDetailViewPagerAdapter(this, dynamicImageList);
         viewPager.setAdapter(adapter);
     }

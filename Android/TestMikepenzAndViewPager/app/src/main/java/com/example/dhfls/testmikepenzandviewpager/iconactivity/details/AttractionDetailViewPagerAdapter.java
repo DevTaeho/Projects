@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.dhfls.testmikepenzandviewpager.R;
+import com.github.chrisbanes.photoview.PhotoView;
 
 public class AttractionDetailViewPagerAdapter extends PagerAdapter {
 
@@ -42,23 +43,25 @@ public class AttractionDetailViewPagerAdapter extends PagerAdapter {
         inflater = (LayoutInflater) activity.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.attraction_detail_viewpager_item, container, false);
 
-        ImageView image;
+        PhotoView photoView;
 
         /**
-         * This is for AttractionDetailActivity's ImageView.
+         * This is for AttractionDetailActivity's PhotoView.
+         *
          */
-        image = (ImageView) itemView.findViewById(R.id.attraction_detail_viewpager_imageview);
+        photoView = (PhotoView) itemView.findViewById(R.id.attraction_detail_cardview_photoview);
+
         DisplayMetrics dis = new DisplayMetrics();
 
         activity.getWindowManager().getDefaultDisplay().getMetrics(dis);
         int height = dis.heightPixels;
         int width = dis.widthPixels;
-        image.setMinimumHeight(height);
-        image.setMinimumWidth(width);
+        photoView.setMinimumHeight(height);
+        photoView.setMinimumWidth(width);
 
         Glide.with(activity.getApplicationContext())
                 .load(images[position])
-                .into(image);
+                .into(photoView);
 
         container.addView(itemView);
 

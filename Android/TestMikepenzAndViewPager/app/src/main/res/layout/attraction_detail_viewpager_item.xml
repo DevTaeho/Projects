@@ -4,9 +4,9 @@
     android:layout_height="wrap_content"
     android:background="@drawable/detailactivity_viewpager_border">
 
-    <ImageView
-        android:id="@+id/attraction_detail_viewpager_imageview"
+    <com.github.chrisbanes.photoview.PhotoView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/attraction_detail_cardview_photoview"/>
 
 </LinearLayout>
