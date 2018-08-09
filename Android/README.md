@@ -18,6 +18,11 @@
 	- <!> 해당 관광지의 ContentId를 통해 관광지의 자세한 내용을 Parsing해야 되는데 결과가 나타나지 않음
 	
 	- Image Zoom을 위해 PhotoView 라이브러리를 사용
+	
+	- <!> PhotoView 사용 시 과도하게 Zoom Out하는 경우 'IllegalArgumentException (pointerIndex out of range)' 예외가 발생
+		- ViewPager class를 extend 한'ViewPagerFixed' 클래스를 따로 두어 예외를 따로 처리
+			- TouchEvent와 InterceptTouchEvent 동작 중 예외 발생 시 에러를 추적, 리턴은 false
+			- 본질적인 해결 방법을 찾아야할 듯
 
 		  
 		  
