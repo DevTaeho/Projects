@@ -32,6 +32,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AttractionInDetail extends AppCompatActivity {
 
@@ -44,8 +46,12 @@ public class AttractionInDetail extends AppCompatActivity {
     String contentId;
     Intent getToolbarTitleIntent;
 
-    String[] image_list = new String[20];
+    TextView attractionDetailInfoTextView;
 
+
+    String[] dynamicImageList;
+
+    List<String> imageUrlList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,26 +71,35 @@ public class AttractionInDetail extends AppCompatActivity {
         contentId = getToolbarTitleIntent.getExtras().getString("contentId");
         toolbarTitleTextView.setText(toolbarTitle);
 
+        // Get TextView that displays the information of attraction in detail.
+        attractionDetailInfoTextView = (TextView) findViewById(R.id.attraction_detail_viewpager_textview);
+        // Get detail Data of Attraction by calling 'attractionDetailInfo()' method.
+        String detailData = attractionDetailInfo();
+        attractionDetailInfoTextView.setText(detailData);
+
+        Log.d("ContentID", contentId);
+
         getDetailAsyncTask getDetailAsyncTask = new getDetailAsyncTask();
         try{
-            image_list = getDetailAsyncTask.execute().get();
+            getDetailAsyncTask.execute().get();
         }catch (Exception e){
             e.printStackTrace();
         }
 
+        dynamicImageList = makeDynamicImageUrl(imageUrlList);
+
         // Find ViewPager and set adapter with AttractionDetailViewPagerAdapter.
         viewPager = (ViewPager) findViewById(R.id.attraction_detail_viewpager);
-        adapter = new AttractionDetailViewPagerAdapter(this, image_list);
+        adapter = new AttractionDetailViewPagerAdapter(this, dynamicImageList);
         viewPager.setAdapter(adapter);
     }
 
-    public class getDetailAsyncTask extends AsyncTask<String, Void, String[]>{
+    public class getDetailAsyncTask extends AsyncTask<String, Void, Void>{
 
         @Override
-        protected String[] doInBackground(String... strings) {
-            String[] imageList;
-            imageList = APIParser_Array();
-            return imageList;
+        protected Void doInBackground(String... strings) {
+            APIParser_Array();
+            return null;
         }
     }
 
@@ -92,7 +107,6 @@ public class AttractionInDetail extends AppCompatActivity {
     public String KEY = "MnY8VWII4nsP44khsrarNrTViOaLi14QbVuou%2BLadpJkKOEtdhkjSxI4dLfss2Abj7G1rifBKek1mvXG4YoplA%3D%3D";
 
     String jsonResult = null;
-
 
     /*String addr_list[] = new String[10];
     String detail_list[] = new String[10];
@@ -119,7 +133,6 @@ public class AttractionInDetail extends AppCompatActivity {
                 }
             }
 
-
             reader.close();
 
             jsonResult = buffer.toString();
@@ -132,7 +145,7 @@ public class AttractionInDetail extends AppCompatActivity {
     }
 
 
-    public String[] APIParser_Array(){
+    public void APIParser_Array(){
 
         try {
 
@@ -149,22 +162,19 @@ public class AttractionInDetail extends AppCompatActivity {
                 //이미지 리스트 파싱
                 JSONObject list = (JSONObject) item.get(i);
                 String photo = list.get("originimgurl").toString();
-                image_list[i]=photo;
-                Log.d("imageUrl", image_list[i]);
+                imageUrlList.add(photo);
             }
 
-            return image_list;
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
 
-            return null;
         }
 
     }
 
 
-    public void APIParser() {
+    public String attractionDetailInfo() {
 
         //세부내용 파싱
         try {
@@ -183,12 +193,17 @@ public class AttractionInDetail extends AppCompatActivity {
             String homepage = (String) item.get("homepage"); //홈페이지 주소
             String tel = (String) item.get("tel"); //전화번호
 
+            return detail;
+
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
-    }
 
+            return "Failed to read data";
+        }
+
+
+    }
 
     private String getURLParam() {
 
@@ -204,5 +219,23 @@ public class AttractionInDetail extends AppCompatActivity {
                 "&contentId=" + contentId + "&imageYN=Y" +
                 "&MobileOS=AND&MobileApp=appName&_type=json";
         return apiUrl;
+    }
+
+    /**
+     *
+     * @param imageUrlList
+     * @return
+     *
+     * Allocate the data in imageUrlList to imageList String array for the number of images it has.
+     * So, Consequently Viewpager can display images for the number of images the imageUrlList has.
+     */
+    private String[] makeDynamicImageUrl(List<String> imageUrlList){
+
+        String[] imageList = new String[imageUrlList.size()];
+
+        for(int i = 0; i<imageUrlList.size(); i++){
+            imageList[i] = imageUrlList.get(i);
+        }
+        return imageList;
     }
 }

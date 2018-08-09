@@ -49,6 +49,8 @@ public class FirstFragment extends Fragment {
     static final int IMAGE_PER_PAGE = 4;
     int imagePerPage = 0;
 
+    boolean stopUpdating;
+
     /**
      * It is for image and text in this fragment
      * It is the lists of image and text
@@ -151,11 +153,18 @@ public class FirstFragment extends Fragment {
                     }
 
                     for(int i = imagePerPage; i < imagePerPage + IMAGE_PER_PAGE; i++){
-                        if(imagePerPage == imageUrl.length) break;
-                        attractionItemList.add(new AttractionRecyclerViewItem(title_list[i], imageUrl[i], contentID_list[i]));
+                        if(!stopUpdating){
+                            if(!imageUrl[i].equals("stop")){
+                                attractionItemList.add(new AttractionRecyclerViewItem(title_list[i], imageUrl[i], contentID_list[i]));
+                            }else{
+                                break;
+                            }
+                        }
                     }
-                    attractionRecyclerViewDataAdapter.notifyDataSetChanged();
-                    imagePerPage += IMAGE_PER_PAGE;
+                    if(!stopUpdating){
+                        attractionRecyclerViewDataAdapter.notifyDataSetChanged();
+                        imagePerPage += IMAGE_PER_PAGE;
+                    }
                 }
             }
         });
@@ -175,61 +184,71 @@ public class FirstFragment extends Fragment {
 
         @Override
         protected String[] doInBackground(String... urls) {
-            try {
-                URL url = new URL(urls[0]);
-                InputStream is = url.openStream();
-                InputStreamReader isr = new InputStreamReader(is);
-                BufferedReader reader = new BufferedReader(isr);
-                StringBuffer buffer = new StringBuffer();
-                String line = null;
-                String tmpStr = null;
 
-                while ((line = reader.readLine()) != null) {
-                    tmpStr = line.toString();
-                    tmpStr = tmpStr.replaceAll(" ", "");
-                    if (!tmpStr.equals("")) {
-                        buffer.append(line).append("\r\n");
+            if(!stopUpdating){
+                try {
+                    URL url = new URL(urls[0]);
+                    InputStream is = url.openStream();
+                    InputStreamReader isr = new InputStreamReader(is);
+                    BufferedReader reader = new BufferedReader(isr);
+                    StringBuffer buffer = new StringBuffer();
+                    String line = null;
+                    String tmpStr = null;
+
+                    while ((line = reader.readLine()) != null) {
+                        tmpStr = line.toString();
+                        tmpStr = tmpStr.replaceAll(" ", "");
+                        if (!tmpStr.equals("")) {
+                            buffer.append(line).append("\r\n");
+                        }
                     }
+
+                    reader.close();
+                    jsonResult = buffer.toString();
+                    //System.out.println("JSON 형식  :  " + xmlResult);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
-                reader.close();
-                jsonResult = buffer.toString();
-                //System.out.println("JSON 형식  :  " + xmlResult);
+                try {
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                    JSONParser jsonParser = new JSONParser();
+                    JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonResult);
+                    JSONObject StockInfoArray = (JSONObject) jsonObject.get("response");
+                    JSONObject StockInfoArray2 = (JSONObject) StockInfoArray.get("body");
+                    JSONObject items = (JSONObject) StockInfoArray2.get("items");
 
-            try {
-
-                JSONParser jsonParser = new JSONParser();
-                JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonResult);
-                JSONObject StockInfoArray = (JSONObject) jsonObject.get("response");
-                JSONObject StockInfoArray2 = (JSONObject) StockInfoArray.get("body");
-                JSONObject items = (JSONObject) StockInfoArray2.get("items");
-
-                JSONArray item = (JSONArray) items.get("item");
+                    JSONArray item = (JSONArray) items.get("item");
 
 
 
 
-                for (int i = imagePerPage; i < imagePerPage + IMAGE_PER_PAGE; i++) {
-                    JSONObject list = (JSONObject) item.get(i);
-                    String photo = (String) list.get("firstimage");
-                    String title = (String) list.get("title");
-                    Long contentID = (Long) list.get("contentid");
+                    for (int i = imagePerPage; i < imagePerPage + IMAGE_PER_PAGE; i++) {
+                        JSONObject list = (JSONObject) item.get(i);
+                        String photo = (String) list.get("firstimage");
+                        String title = (String) list.get("title");
+                        Long contentID = (Long) list.get("contentid");
 
-                    contentID_list[i]=contentID;
-                    title_list[i]= title;
-                    image_list[i] = photo;
+                        if(photo != null){
+                            contentID_list[i]=contentID;
+                            title_list[i]= title;
+                            image_list[i] = photo;
+                        }else{
+                            image_list[i] = "stop";
+                            stopUpdating = true;
+                        }
 
-                    Log.d("URL : ",image_list[i]);
+                        Log.d("Keep Parsing : ",image_list[i]);
+                    }
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                return image_list;
+            }else {
+                return null;
             }
-            return image_list;
         }
     }
 
