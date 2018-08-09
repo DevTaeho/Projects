@@ -16,6 +16,8 @@
 		  List<String>에 저장된 Image URL의 수만큼 String 배열에 할당 (makeDynamicImageUrl 메소드를 만들어 구현)
 		  
 	- <!> 해당 관광지의 ContentId를 통해 관광지의 자세한 내용을 Parsing해야 되는데 결과가 나타나지 않음
+	
+	- Image Zoom을 위해 PhotoView 라이브러리를 사용
 
 		  
 		  
