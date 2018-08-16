@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="50dp"
+        >
+
+        <ImageView
+            android:id="@+id/tagImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/tag"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/checkText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="주문하시려면 휴대폰을 태그해주세요"
+        android:textSize="20sp"
+        android:textColor="#C0C0C0"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+
+
+    <TextView
+        android:id="@+id/alarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkText"
+        android:text="휴대폰 진동이 울리면 카운터로 오세요"
+        android:textSize="20sp"
+        android:textColor="#C0C0C0"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/inputUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/alarm"
+        android:text="주문하실 이름을 적어주세요!(필수)"
+        android:textSize="20sp"
+        android:textColor="#FF0000"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inputUserName"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="이름"
+        android:textColor="#C0C0C0"/>
+
+
+
+
+</LinearLayout>
