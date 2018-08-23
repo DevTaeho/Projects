@@ -107,7 +107,7 @@ public class AttractionInDetail extends AppCompatActivity {
     public String KEY = "MnY8VWII4nsP44khsrarNrTViOaLi14QbVuou%2BLadpJkKOEtdhkjSxI4dLfss2Abj7G1rifBKek1mvXG4YoplA%3D%3D";
 
     String jsonResult = null;
-
+    String a;
 
     public String getJSON(String res) {
         try {
