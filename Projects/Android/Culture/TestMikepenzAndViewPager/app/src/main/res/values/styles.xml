@@ -1,0 +1,78 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="MaterialDrawerTheme.Light.DarkToolbar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/md_white_1000</item>
+        <item name="colorPrimaryDark">@color/md_black_1000</item>
+        <item name="android:navigationBarColor">@color/md_black_1000</item>
+        <item name="android:colorForeground">@color/foreground_material_light</item>
+
+        <!-- EditText Style -->
+        <item name="colorControlNormal">@color/md_white_1000</item>
+        <item name="colorControlActivated">@color/md_white_1000</item>
+        <item name="colorControlHighlight">@color/md_white_1000</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="AppTheme.PopupOverlay">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/md_white_1000</item>
+        <item name="colorPrimaryDark">@color/md_black_1000</item>
+    </style>
+
+
+    <!-- ToolBar -->
+    <style name="ToolBarStyle" parent="AppTheme">
+        <item name="editTextColor">@color/md_black_1000</item>
+
+        <!-- Hamburger Toggle -->
+        <item name="drawerArrowStyle">@style/MaterialDrawer.DrawerArrowStyle</item>
+    </style>
+
+    <!-- ToolBar Hamburger Toggle Style -->
+    <style name="MaterialDrawer.DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">false</item>
+        <item name="color">@android:color/black</item>
+        <item name="thickness">2dp</item>
+        <item name="arrowShaftLength">20dp</item>
+        <item name="arrowHeadLength">9dp</item>
+        <item name="barLength">24dp</item>
+        <item name="gapBetweenBars">4.5dp</item>
+        <item name="drawableSize">32dp</item>
+    </style>
+
+    <!-- Fragment Style in Main -->
+    <style name="MyFragmentStyle" parent="Widget.Design.TabLayout">
+        <item name="tabPaddingStart">10dp</item>
+        <item name="tabPaddingTop">15dp</item>
+        <item name="tabPaddingBottom">15dp</item>
+        <item name="tabPaddingEnd">10dp</item>
+        <item name="android:background">#f9fff9</item>
+    </style>
+    
+    <!-- TabLayout Style -->
+    <style name="MyTabLayout" parent="Widget.Design.TabLayout">
+        <item name="android:background">#f9fff9</item>
+        <item name="tabIndicatorColor">@color/md_deep_orange_100</item>
+        <item name="tabIndicatorHeight">2.5dp</item>
+        <item name="tabPaddingStart">6dp</item>
+        <item name="tabPaddingEnd">6dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/AppTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/md_orange_200</item>
+    </style>
+
+    <!-- TabLayout's text style -->
+    <style name="AppTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_black_1000</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!-- NumberPicker Style -->
+    <style name="MyNumberPickerTheme" parent="@android:style/Widget.Material.NumberPicker">
+        <item name="colorControlNormal ">#01579b</item>
+        <item name="android:background">#64b5f6</item>
+    </style>
+
+</resources>

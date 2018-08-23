@@ -1,0 +1,73 @@
+<!-- 메인 화면입니다. -->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+ <head>
+  <title> 로그인 </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <style>
+   .body{
+     width: 50%;
+     height: 60%;
+     margin: 0 auto;
+   }
+
+   .body form fieldset{
+     width: 35%;
+     height: 40%;
+     margin: 30% auto;
+   }
+
+   .head{
+     height: 0px;
+     text-align: center;
+     font-size: 40px;
+   }
+   .support{
+     height: 20px;
+     text-align: right;
+   }
+
+   .support p{
+     font-weight: bold;
+   }
+ </style>
+
+
+<body class="body">
+
+  <div class="head">
+    <p>관리자 접속</p>
+  </div>
+
+
+  <form action="login.php" method="post">
+    <fieldset>
+        <legend>로그인</legend>
+
+        <label for="id">아이디 : </label>
+        <br>
+        <input type="text" name="member_id" />
+        <br>
+        <label for="pass">비밀번호 :</label>
+        <br>
+        <input type="password" name="member_password"  />
+        <br><br>
+        <input type="submit" value="로그인" onclick=""/>
+    </fieldset>
+  </form>
+
+
+  <div class="support">
+    <p>관리자 계정 문의</p>
+    <p>HP : 010-2222-3333</p>
+  </div>
+ </body>
+
+</html>

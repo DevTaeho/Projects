@@ -1,0 +1,48 @@
+/* 상단 bar CSS 입니다 */
+div.upper{
+  background-color: #FFF; width: 150px; height: 60px;  margin: 0; padding: 0;
+  float: right;
+}
+
+div.upper ul{
+  list-style: none;
+}
+
+div.upper ul li{
+  float:left; width:100px; color:#fff; text-align:center;
+}
+
+div.upper ul li img{
+  color:#fff; font-weight:bold; display:block; margin: auto;
+}
+
+div.upper ul li img:hover{
+   background:#444;
+}
+
+div.upper ul li dl.dropdown{
+  border:3px #ccc solid; background:#FFC; display:none; width: 100px;
+}
+
+div.upper ul li dl.dropdown dd{
+  height:30px; line-height:30px; border-bottom:1px #ccc solid;
+}
+
+div.upper ul li dl.dropdown a{
+  color:#333;  padding:0 5px;  text-align:left; width: auto;
+}
+
+div.upper ul li dl.dropdown a:hover{
+  background:#F60; color:#fff; text-align:left;
+}
+
+div.upper ul li.menu3:hover .dropdown{display: block;}
+
+
+.main {
+
+}
+
+.bottom{
+
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="planets_array">
+        <item>지점선택</item>
+        <item>충북대점</item>
+        <item>복대점</item>
+        <item>개신점</item>
+        <item>가경점</item>
+        <item>abc</item>
+    </string-array>
+</resources>

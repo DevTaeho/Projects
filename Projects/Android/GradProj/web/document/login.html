@@ -1,0 +1,62 @@
+<?php
+  $dbhost = "localhost";
+  $dbuser = "root";
+  $dbname = "cafe";
+  $dbpwd = "dudrnr63";
+
+  $conn = mysqli_connect($dbhost, $dbuser, $dbpwd);
+
+
+  echo "<br>";
+  mysqli_select_db($dbname, $conn);
+  $result = mysqli_query($conn, 'SELECT VERSION() as VERSION');
+
+  $data = mysqli_fetch_assoc($result);
+
+ ?>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<title>로그인</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+</head>
+
+<body>
+
+	<div class="layer">
+
+		<form method="post" action="./login.php">
+			<table>
+				<tr>
+					<td>id :<input type="text" class="itext" name="id" value="">
+					</td>
+				</tr>
+
+				<tr>
+					<td>pw:<input type="password" name="pw">
+					</td>
+				</tr>
+
+				<tr>
+					<td align="center">
+						<button>login</button> <!--	<input type="submit"   value="login"> -->
+					</td>
+				</tr>
+			</table>
+		</form>
+
+
+
+
+
+	</div>
+
+</body>
+
+</html>
