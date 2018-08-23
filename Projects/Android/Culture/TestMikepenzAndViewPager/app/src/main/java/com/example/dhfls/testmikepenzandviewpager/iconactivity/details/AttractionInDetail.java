@@ -108,12 +108,6 @@ public class AttractionInDetail extends AppCompatActivity {
 
     String jsonResult = null;
 
-    /*String addr_list[] = new String[10];
-    String detail_list[] = new String[10];
-    String homepage[] = new String[10];
-    String tel[] = new String[10];
-    String title[] = new String[10];*/
-
 
     public String getJSON(String res) {
         try {
